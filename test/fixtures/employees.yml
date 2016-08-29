@@ -4,10 +4,5 @@ one:
   name: MyString
   phone: MyString
   email: MyString
-  id: 
+  employee_id: MyString
 
-two:
-  name: MyString
-  phone: MyString
-  email: MyString
-  id: 

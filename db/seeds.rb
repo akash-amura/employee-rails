@@ -21,7 +21,7 @@ end
 def generate_employees(emp_count=10)
   companies = Company.all
   emp_count.times do
-    companies[Random.new.rand(companies.length)].employees.create(name:Faker::Name.name,email: Faker::Internet.email, phone:Faker::PhoneNumber.phone_number,employee_id:SecureRandom.uuid,salary:Random.new.rand(1..50000000),designation:Faker::Company.profession)
+    companies[Random.new.rand(companies.length)].employees.create(name:Faker::Name.name,email: Faker::Internet.email, phone:Faker::PhoneNumber.phone_number,employee_id:SecureRandom.uuid,salary:Random.new.rand(10000..100000),designation:Faker::Company.profession)
   end
 end
 

@@ -17,12 +17,17 @@ class CompanyController < ApplicationController
     @address = Address.new(address_params)
     @company.company_id = SecureRandom.uuid
     @company.addresses << @address 
-    if @company.save
-      redirect_to company_show_path, id:@company.company_id
-    else 
-      render 'new'
+    respond_to do |format|
+      if @company.save
+        format.html {redirect_to company_show_path(@company)}
+        format.json {render :json => {message: "created successfully"},status: :created}
+      else 
+        format.html {render 'new'}
+        format.json {render :json => {message:"Error creating user",errors:@company.errors.full_messages},status: :unprocessable_entity}
+      end
     end
   end
+
 
   def show
     @company = Company.find(params[:id])
@@ -49,15 +54,27 @@ class CompanyController < ApplicationController
       addr_update <<  address_find.update(address_params_permit(addr_params))
     end
 
-    if comp_update && addr_update.all?{|x| x == true}
-      redirect_to company_show_path, id:@company.company_id
+    respond_to do |format|
+      if comp_update && addr_update.all?{|x| x == true}
+        format.html {redirect_to company_show_path, id:@company.company_id}
+        format.json {render :json => {message: "updated successfully"},status: :accepted}
+      else 
+        format.html {render :edit}
+        format.json {render :json => {message: "error",errors: @company.errors.full_messages},status: :unprocessable_entity}
+      end
     end
   end
 
   def destroy
     @company = Company.find(params[:id])
-    if @company.destroy
-      redirect_to company_index_path
+    respond_to do |format| 
+      if @company.destroy
+        format.html {redirect_to company_index_path}
+        format.json {render :json => {message: "destroyed successfully"},status: :ok}
+      else 
+        format.html {render 'index'}
+        format.json {render :json =>{message: "error in destroying",errors: @company.errors.full_messages},status: :unprocessable_entity}
+      end
     end
   end
 
@@ -74,6 +91,4 @@ class CompanyController < ApplicationController
     def address_params_permit(hash)
       hash.permit(:building_number,:street_name,:street_address,:secondary_address,:city,:state,:zip_code,:country,:longitude,:latitude)
     end
-
-
 end

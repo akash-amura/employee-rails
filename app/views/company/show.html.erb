@@ -1,0 +1,13 @@
+<h1>Company#show</h1>
+
+<h2><%= @company.name %></h2>
+<p><b>Domain:</b><%= @company.domain %></p>
+<p><b>Type:</b><%= @company.company_type %></p>
+<p><b>Description:</b><%= @company.description %></p>
+<p><b>Addresses:</b></p>
+<% @company.addresses.each_with_index do |address,index| %>
+  <p>Address <%= index+1 %>  : <%= address.attributes.values[0,11].join(',') %></p>
+<%  end %>
+
+<hr/>
+<%= link_to "Back",company_index_path %>|<%= link_to "Edit", company_edit_path %> 

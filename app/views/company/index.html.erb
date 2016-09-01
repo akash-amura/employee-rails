@@ -1,0 +1,7 @@
+<h1>Company#index</h1>
+
+<ul>
+<% @companies.each do |company|%>
+  <li> <%= company.name %>| <%= link_to "Show",company_show_path(company) %>| <%= link_to "Edit",company_edit_path(company) %>| <%= link_to "Delete",company_destroy_path(company),method: :delete %></li>
+<% end %>
+</ul>

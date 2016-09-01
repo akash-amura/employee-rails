@@ -1,0 +1,12 @@
+<h1>Company#edit</h1>
+
+<% content_for :address do %>
+  <% @addresses.each_with_index do |address,index| %> 
+    <hr/>
+    <%= render "address", address:address,address_sym:"address[#{index.to_s}]",edit: true %>
+  <% end %>
+<% end %>
+
+<hr/>
+<%=  render "company_form",company:@company,post_url:company_update_path(@company.company_id) %>
+<%= link_to "Back",company_index_path %>

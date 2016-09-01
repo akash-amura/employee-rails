@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  get 'company', to:'company#index',as:'company_index'
+  get 'company/new',to:'company#new'
+
+  post 'company/create',to:'company#create'
+
+  get 'company/:id', to:'company#show',as:'company_show'
+
+  get 'company/:id/edit', to:'company#edit',as:'company_edit'
+
+  post 'company/:id/update', to:'company#update',as:'company_update'
+  patch 'company/:id/update', to:'company#update'
+
+  delete 'company/:id/destroy', to:'company#destroy',as:'company_destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

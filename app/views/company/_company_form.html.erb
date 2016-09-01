@@ -1,0 +1,26 @@
+<b>Company details</b>
+<%= form_for company,url: post_url  do |f| %>
+  <p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </p>
+
+  <p>
+  <%= f.label :domain %>
+  <%= f.text_field :domain %>
+  </p>
+
+  <p>
+  <%= f.label :company_type,"Type" %>
+  <%= f.text_field :company_type %>
+  </p>
+
+  <p>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  </p>
+
+  <%= yield(:address) %>
+  <%= f.submit  %>
+<%  end %>
+

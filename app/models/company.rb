@@ -5,5 +5,4 @@ class Company < ActiveRecord::Base
   validates :name, presence: true
   validates :domain, presence: true
   validates :company_type, presence: true
-  validates_associated :employees
 end

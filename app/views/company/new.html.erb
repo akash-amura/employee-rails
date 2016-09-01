@@ -1,0 +1,10 @@
+<h1>Company#new</h1>
+
+<% content_for :address do %>
+  <hr/>
+ <%= render "address" ,address_sym: :address, address: nil, edit: false%>
+<%  end %>
+
+<hr>
+<%= render "company_form", company:@company,post_url:company_create_path %>
+
